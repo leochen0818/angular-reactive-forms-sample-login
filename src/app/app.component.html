@@ -3,21 +3,19 @@
     <label for="account">帳號：</label>
     <input
       type="email"
-      name="account"
       id="account"
-      formControlName="account"
+      [formControl]="accountControl"
     />
-    <span class="error-message">{{ accountErrorMessage }}</span>
+    <span class="error-message">{{ getErrorMessage(accountControl.errors) }}</span>
   </p>
   <p>
     <label for="password">密碼：</label>
     <input
       type="password"
-      name="password"
       id="password"
-      formControlName="password"
+      [formControl]="passwordControl"
     />
-    <span class="error-message">{{ passwordErrorMessage }}</span>
+    <span class="error-message">{{ getErrorMessage(passwordControl.errors) }}</span>
   </p>
   <p>
     <button type="submit" [disabled]="formGroup.invalid">登入</button>

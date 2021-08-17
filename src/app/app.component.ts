@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   ValidationErrors,
   Validators
@@ -13,8 +14,14 @@ import {
 })
 export class AppComponent implements OnInit {
   formGroup: FormGroup;
-  accountErrorMessage = '';
-  passwordErrorMessage = '';
+
+  get accountControl(): FormControl {
+    return this.formGroup.get('account') as FormControl;
+  }
+
+  get passwordControl(): FormControl {
+    return this.formGroup.get('password') as FormControl;
+  }
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -32,22 +39,9 @@ export class AppComponent implements OnInit {
         [Validators.required, Validators.minLength(8), Validators.maxLength(16)]
       ]
     });
-    const accountControl = this.formGroup.get('account');
-    accountControl.valueChanges.subscribe(() => {
-      this.validationCheck(accountControl.errors, 'account');
-    });
-    const passwordControl = this.formGroup.get('password');
-    passwordControl.valueChanges.subscribe(() => {
-      this.validationCheck(passwordControl.errors, 'password');
-    });
   }
 
-  login(): void {}
-
-  private validationCheck(
-    errors: ValidationErrors,
-    fieldName: 'account' | 'password'
-  ): void {
+  getErrorMessage(errors: ValidationErrors): string {
     let errorMessage: string;
     if (!errors) {
       errorMessage = '';
@@ -60,17 +54,10 @@ export class AppComponent implements OnInit {
     } else if (errors.maxlength) {
       errorMessage = '密碼長度最長不得超過16碼';
     }
-    this.setErrorMessage(fieldName, errorMessage);
+    return errorMessage;
   }
 
-  private setErrorMessage(
-    fieldName: 'account' | 'password',
-    errorMessage: string
-  ): void {
-    if (fieldName === 'account') {
-      this.accountErrorMessage = errorMessage;
-    } else {
-      this.passwordErrorMessage = errorMessage;
-    }
+  login(): void {
+    console.log('do login...');
   }
 }
