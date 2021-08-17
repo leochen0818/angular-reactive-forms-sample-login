@@ -36,9 +36,9 @@ export class AppComponent implements OnInit {
     accountControl.valueChanges.subscribe(() => {
       this.validationCheck(accountControl.errors, 'account');
     });
-    const passowrdControl = this.formGroup.get('passowrd');
-    passowrdControl.valueChanges.subscribe(() => {
-      this.validationCheck(passowrdControl.errors, 'password');
+    const passwordControl = this.formGroup.get('password');
+    passwordControl.valueChanges.subscribe(() => {
+      this.validationCheck(passwordControl.errors, 'password');
     });
   }
 
@@ -57,6 +57,8 @@ export class AppComponent implements OnInit {
       errorMessage = '格式有誤，請重新輸入';
     } else if (errors.minlength) {
       errorMessage = '密碼長度最短不得低於8碼';
+    } else if (errors.maxlength) {
+      errorMessage = '密碼長度最長不得超過16碼';
     }
     this.setErrorMessage(fieldName, errorMessage);
   }

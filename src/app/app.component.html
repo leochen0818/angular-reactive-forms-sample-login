@@ -1,10 +1,11 @@
-<form (submit)="login()">
+<form [formGroup]="formGroup" (ngSubmit)="login()">
   <p>
     <label for="account">帳號：</label>
     <input
       type="email"
       name="account"
       id="account"
+      formControlName="account"
     />
     <span class="error-message">{{ accountErrorMessage }}</span>
   </p>
@@ -14,10 +15,11 @@
       type="password"
       name="password"
       id="password"
+      formControlName="password"
     />
     <span class="error-message">{{ passwordErrorMessage }}</span>
   </p>
   <p>
-    <button type="submit">登入</button>
+    <button type="submit" [disabled]="formGroup.invalid">登入</button>
   </p>
 </form>
