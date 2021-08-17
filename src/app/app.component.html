@@ -1,7 +1,3 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
 <form (submit)="login()">
   <p>
     <label for="account">帳號：</label>
@@ -10,7 +6,7 @@
       name="account"
       id="account"
     />
-    <!-- <span class="error-message">{{ accountErrorMessage }}</span> -->
+    <span class="error-message">{{ accountErrorMessage }}</span>
   </p>
   <p>
     <label for="password">密碼：</label>
@@ -19,7 +15,7 @@
       name="password"
       id="password"
     />
-    <!-- <span class="error-message">{{ passwordErrorMessage }}</span> -->
+    <span class="error-message">{{ passwordErrorMessage }}</span>
   </p>
   <p>
     <button type="submit">登入</button>
