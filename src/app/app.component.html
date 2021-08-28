@@ -6,7 +6,7 @@
       id="account"
       [formControl]="accountControl"
     />
-    <span class="error-message">{{ getErrorMessage(accountControl.errors) }}</span>
+    <span class="error-message">{{ getErrorMessage(accountControl) }}</span>
   </p>
   <p>
     <label for="password">密碼：</label>
@@ -15,7 +15,7 @@
       id="password"
       [formControl]="passwordControl"
     />
-    <span class="error-message">{{ getErrorMessage(passwordControl.errors) }}</span>
+    <span class="error-message">{{ getErrorMessage(passwordControl) }}</span>
   </p>
   <p>
     <button type="submit" [disabled]="formGroup.invalid">登入</button>

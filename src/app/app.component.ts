@@ -3,7 +3,6 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  ValidationErrors,
   Validators
 } from '@angular/forms';
 
@@ -41,17 +40,17 @@ export class AppComponent implements OnInit {
     });
   }
 
-  getErrorMessage(errors: ValidationErrors): string {
+  getErrorMessage(formControl: FormControl): string {
     let errorMessage: string;
-    if (!errors) {
+    if (!formControl.errors || formControl.pristine) {
       errorMessage = '';
-    } else if (errors.required) {
+    } else if (formControl.errors.required) {
       errorMessage = '此欄位必填';
-    } else if (errors.pattern) {
+    } else if (formControl.errors.pattern) {
       errorMessage = '格式有誤，請重新輸入';
-    } else if (errors.minlength) {
+    } else if (formControl.errors.minlength) {
       errorMessage = '密碼長度最短不得低於8碼';
-    } else if (errors.maxlength) {
+    } else if (formControl.errors.maxlength) {
       errorMessage = '密碼長度最長不得超過16碼';
     }
     return errorMessage;
